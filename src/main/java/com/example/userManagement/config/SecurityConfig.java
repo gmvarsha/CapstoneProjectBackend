@@ -14,14 +14,15 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin().disable(); // Disable default login form
+     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+       
+                http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                                .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login","/api/user/booking").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/user/getBookingDetails/*").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(login -> login.disable()); // Disable default login form
         return http.build();
     }
 
