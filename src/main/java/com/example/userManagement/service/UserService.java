@@ -1,8 +1,11 @@
 package com.example.userManagement.service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.userManagement.dto.UserDTO;
 import com.example.userManagement.model.User;
 import com.example.userManagement.repository.UserRepository;
 
@@ -32,6 +35,23 @@ public class UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+    
+    public UserDTO getUserById(Long userId) throws Exception {
+    	try {
+        User user= userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setEmail(user.getEmail());
+            userDTO.setFirstName(user.getFirstName());
+            userDTO.setLastName(user.getLastName());
+            return userDTO;
+        } else {
+        	throw new Exception("User Not Found");
+        }
+    } catch (Exception e) {
+    	throw new Exception("Internal Server Error");
+    }
     }
 
     // Additional methods for user management (create, update, delete) can be added here

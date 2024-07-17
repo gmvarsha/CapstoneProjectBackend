@@ -19,7 +19,7 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login","/api/user/query","/api/user/checkin").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/user/getAllQueries").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/user/getAllQueries","/api/user/{userId}").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin().disable(); // Disable default login form
