@@ -1,13 +1,15 @@
 package com.example.userManagement.DTO;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.example.userManagement.model.Flights;
 import com.example.userManagement.model.User;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.example.userManagement.model.Passengers;
+
 
 public class BookingPostDTO {
-	
 	
 	
 	    private User user;
@@ -15,8 +17,21 @@ public class BookingPostDTO {
 	    @JsonAlias("booking_date")
 	    private Date bookingDate;
 	    private String status;
+	    private List<Passengers> passengerDetails;
+	    
+	    
 		
-	    public User getUser() {
+	 
+
+		public List<Passengers> getPassengerDetails() {
+			return passengerDetails;
+		}
+
+		public void setPassengerDetails(List<Passengers> passengerDetails) {
+			this.passengerDetails = passengerDetails;
+		}
+
+		public User getUser() {
 			return user;
 		}
 	    

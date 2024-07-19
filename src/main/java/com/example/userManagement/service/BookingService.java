@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.userManagement.DTO.BookingDTO;
 import com.example.userManagement.model.Bookings;
 import com.example.userManagement.model.Flights;
+import com.example.userManagement.model.Passengers;
 import com.example.userManagement.model.User;
 import com.example.userManagement.repository.BookingRepository;
 import com.example.userManagement.repository.FlightRepository;
@@ -27,30 +28,39 @@ public class BookingService {
 	@Autowired
 	private BookingRepository bookingRepository;
 
-	public List<BookingDTO> getBookingsByUserId(Long userId) {
+	public List<Bookings> getBookingsByUserId(Long userId) {
 
 		List<BookingDTO> bookingDTO = new ArrayList<>();
 
 		List<Bookings> bookingList = bookingRepository.findByUser_UserId(userId);
-		bookingDTO = bookingList.stream().map(booking -> {
-			BookingDTO dto = new BookingDTO();
-			dto.setBookingId(booking.getBooking_id());
-//			dto.setPassengerName(booking.getPassengerName());
-			dto.setFlightId(booking.getFlight().getFlightId());
-			dto.setFlightNumber(booking.getFlight().getFlightNumber());
-			dto.setDepartureAirport(booking.getFlight().getSource());
-			dto.setArrivalAirport(booking.getFlight().getDestination());
-			dto.setUserId(booking.getUser().getUserId());
-//			dto.setUsername(booking.getUser().getUsername());
-			return dto;
-		}).collect(Collectors.toList());
+		
+		
+//		bookingDTO = bookingList.stream().map(booking -> {
+//			List<Passengers> passengerList = new ArrayList<>();
+//			BookingDTO dto = new BookingDTO();
+//			dto.setBookingId(booking.getBooking_id());
+//			for (Passengers p : booking.getPassengers()) {
+//				
+//				passengerList.add(p);
+//			}
+//			
+//			dto.setFlightId(booking.getFlight().getFlightId());
+//			dto.setFlightNumber(booking.getFlight().getFlightNumber());
+//			dto.setDepartureAirport(booking.getFlight().getSource());
+//			dto.setArrivalAirport(booking.getFlight().getDestination());
+//			dto.setUserId(booking.getUser().getUserId());
+////			dto.setUsername(booking.getUser().getUsername());
+//			return dto;
+//		}).collect(Collectors.toList());
 
-		return bookingDTO;
+		return bookingList;
 	}
 
 	public Bookings saveBooking(Long userId, Long long1, Bookings booking) {
+		  System.out.println("User id "+userId);
+		  System.out.println("User id "+userId);
 		User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-
+     
 		Flights flight = flightRepository.findById(long1).orElseThrow(() -> new RuntimeException("Flight not found"));
 
 		booking.setUser(user);

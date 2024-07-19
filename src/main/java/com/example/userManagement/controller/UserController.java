@@ -3,52 +3,23 @@ package com.example.userManagement.controller;
 import com.example.userManagement.DTO.BookingDTO;
 import com.example.userManagement.DTO.BookingPostDTO;
 import com.example.userManagement.model.Bookings;
+import com.example.userManagement.model.Passengers;
 import com.example.userManagement.model.User;
 import com.example.userManagement.service.BookingService;
 import com.example.userManagement.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-//@RestController
-//@RequestMapping("/api/user")
-//public class UserController {
-//    @Autowired
-//    private UserService userService;
-//
-//    @PostMapping("/login")
-//    public Map<String, Object> login(@RequestBody Map<String, String> request) {
-//        String email = request.get("email");
-//        String password = request.get("password");
-//        System.out.println(request+"userrrrr");
-//
-//        Map<String, Object> response = new HashMap<>();
-//
-//        try {
-//            User user = userService.authenticate(email, password);
-//            if (user != null) {
-//                response.put("token", "dummy-token"); // Generate and send token here if needed
-//                // You can also send userId or any other relevant info here in response
-//                response.put("userId", user.getId()); // Example to send userId
-//                response.put("message", "Login successful");
-//            } else {
-//                response.put("error", "Invalid credentials");
-//            }
-//        } catch (Exception e) {
-//            response.put("error", "An error occurred: " + e.getMessage());
-//        }
-//
-//        return response;
-//    }
-
-// Add more endpoints as needed for user management, profile updates, etc.
-//}
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -103,14 +74,27 @@ public class UserController {
 		System.out.println("Inside Booking controller" + request.toString());
 
 		try {
-
+            
+			
+			System.out.println(new ObjectMapper().writeValueAsString(request));
 			Bookings booking = new Bookings();
+			
 			booking.setUser(request.getUser());
 			booking.setFlight(request.getFlight());
 			booking.setBooking_date(request.getBookingDate());
 			booking.setStatus(request.getStatus());
+			booking.setPassengers(request.getPassengerDetails());
+			
+			
+//			System.out.println(new ObjectMapper().writeValueAsString(booking));
+			
+//			List<Passengers> newPassengers = new ArrayList<>();
+//			
+//			for ()
 
 			bookingService.saveBooking(booking.getUser().getUserId(), booking.getFlight().getFlightId(), booking);
+			
+			System.out.println("Booking is done");
 			return ResponseEntity.status(HttpStatus.CREATED)
 					.body("Booking is successfull will confirm you in few moments on seat allocation");
 		} catch (Exception e) {
@@ -139,10 +123,10 @@ public class UserController {
 	}
 
 	@GetMapping("/getBookingDetails/{userId}")
-	public ResponseEntity<List<BookingDTO>> getBookingsByUserId(@PathVariable Long userId) {
+	public ResponseEntity<List<Bookings>> getBookingsByUserId(@PathVariable Long userId) {
 
 		System.out.println("Inside booking controller");
-		List<BookingDTO> bookings = bookingService.getBookingsByUserId(userId);
+		List<Bookings> bookings = bookingService.getBookingsByUserId(userId);
 		return ResponseEntity.ok(bookings);
 	}
 }

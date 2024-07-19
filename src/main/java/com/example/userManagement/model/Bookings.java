@@ -1,14 +1,21 @@
 package com.example.userManagement.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -28,9 +35,28 @@ public class Bookings {
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flights flight;
 
-	@ManyToOne
+	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonBackReference
 	private User user;
+	
+	
+	@OneToMany(mappedBy = "booking", cascade = CascadeType.ALL,orphanRemoval=true)
+	@JsonManagedReference
+	private List<Passengers> passengers;
+	
+	
+
+	public List<Passengers> getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(List<Passengers> passengers) {
+		this.passengers = passengers;
+		for (Passengers passenger :passengers) {
+			passenger.setBooking(this);
+		}
+	}
 
 	public int getBooking_id() {
 		return booking_id;

@@ -2,8 +2,7 @@ package com.example.userManagement.DTO;
 
 public class BookingDTO {
 	
-	    
-	    
+	
 	    private int bookingId;
 	    private String passengerName;
 	    private Long flightId;
