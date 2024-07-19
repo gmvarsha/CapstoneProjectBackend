@@ -13,16 +13,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-       
-                http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                                .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login","/api/user/booking").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/user/getBookingDetails/*").permitAll()
-                                .anyRequest().authenticated()
-                )
-                .formLogin(login -> login.disable()); // Disable default login form
+   
+//<<<<<<< HEAD
+//     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//       
+//                http.csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> auth
+//                                .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login","/api/user/booking").permitAll()
+//                                .requestMatchers(HttpMethod.GET, "/api/user/getBookingDetails/*").permitAll()
+//                                .anyRequest().authenticated()
+//                )
+//                .formLogin(login -> login.disable()); // Disable default login form
+//=======
+	 @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+         http
+                 .csrf(csrf -> csrf.disable())
+                 .authorizeHttpRequests(auth -> auth
+                                 .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login", "/api/user/query", "/api/user/checkin", "/api/user/booking").permitAll()
+                                 .requestMatchers(HttpMethod.GET, "/api/user/getAllQueries", "/api/user/{userId}", "/api/user/getBookingDetails/*").permitAll()
+                                 .anyRequest().authenticated()
+                 )
+                 .formLogin(login -> login.disable()); // Disable default login form
+//>>>>>>> refs/heads/master
         return http.build();
     }
 

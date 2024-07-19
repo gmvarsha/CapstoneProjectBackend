@@ -6,7 +6,7 @@ public class BookingDTO {
 	    
 	    private int bookingId;
 	    private String passengerName;
-	    private int flightId;
+	    private Long flightId;
 	    private int flightNumber;
 	    private String departureAirport;
 	    private String arrivalAirport;
@@ -25,11 +25,11 @@ public class BookingDTO {
 		public void setPassengerName(String passengerName) {
 			this.passengerName = passengerName;
 		}
-		public int getFlightId() {
+		public Long getFlightId() {
 			return flightId;
 		}
-		public void setFlightId(int i) {
-			this.flightId = i;
+		public void setFlightId(Long long1) {
+			this.flightId = long1;
 		}
 		public int getFlightNumber() {
 			return flightNumber;

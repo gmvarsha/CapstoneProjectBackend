@@ -19,9 +19,7 @@ public class Bookings {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int booking_id;
-//	@Column(name = "user_id")
-//	private Long userId; // BIGINT ,
-//	private int flight_id;// int ,
+
 	private Date booking_date;// date,
 	private String status; // varchar(50),
 

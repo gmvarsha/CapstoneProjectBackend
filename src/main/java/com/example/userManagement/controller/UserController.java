@@ -53,7 +53,7 @@ import java.util.Optional;
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
-	
+
 	@Autowired
 	private BookingService bookingService;
 
@@ -101,53 +101,48 @@ public class UserController {
 	public ResponseEntity<String> bookTicket(@RequestBody BookingPostDTO request) {
 
 		System.out.println("Inside Booking controller" + request.toString());
-		
+
 		try {
-			
+
 			Bookings booking = new Bookings();
-		    booking.setUser(request.getUser());
-		    booking.setFlight(request.getFlight());
-		    booking.setBooking_date(request.getBookingDate());
-		    booking.setStatus(request.getStatus());
-			
-			
-			
-			
-			  bookingService.saveBooking(booking.getUser().getUserId(), booking.getFlight().getFlightId(), booking);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Booking is successfull will confirm you in few moments on seat allocation");
+			booking.setUser(request.getUser());
+			booking.setFlight(request.getFlight());
+			booking.setBooking_date(request.getBookingDate());
+			booking.setStatus(request.getStatus());
+
+			bookingService.saveBooking(booking.getUser().getUserId(), booking.getFlight().getFlightId(), booking);
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body("Booking is successfull will confirm you in few moments on seat allocation");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
 		}
 
 	}
-	
+
 //	@GetMapping("/getBookingDetails/{user_id}")
-	public ResponseEntity<Optional<List<Bookings>>> getBookingDetails(@PathVariable  Long user_id) {
+	public ResponseEntity<Optional<List<Bookings>>> getBookingDetails(@PathVariable Long user_id) {
 
 		System.out.println("Inside getBookingDetails controller");
 
 		try {
-			
+
 //			Optional<List<Bookings>> bookings = userService.getBookingsById(user_id);
 //			System.out.println("Bookings->"+bookings.toString());
 //			return ResponseEntity.ok(bookings);
-		return null;
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return (ResponseEntity<Optional<List<Bookings>>>) ResponseEntity.notFound();
 		}
-		
 
 	}
-	
-	
-	
-	 @GetMapping("/getBookingDetails/{userId}")
-	    public ResponseEntity<List<BookingDTO>> getBookingsByUserId(@PathVariable Long userId) {
-		 
-		 System.out.println("Inside booking controller");
-	        List<BookingDTO> bookings = bookingService.getBookingsByUserId(userId);
-	        return ResponseEntity.ok(bookings);
-	    }
+
+	@GetMapping("/getBookingDetails/{userId}")
+	public ResponseEntity<List<BookingDTO>> getBookingsByUserId(@PathVariable Long userId) {
+
+		System.out.println("Inside booking controller");
+		List<BookingDTO> bookings = bookingService.getBookingsByUserId(userId);
+		return ResponseEntity.ok(bookings);
+	}
 }

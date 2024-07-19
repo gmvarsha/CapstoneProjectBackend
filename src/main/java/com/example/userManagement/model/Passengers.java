@@ -24,7 +24,9 @@ public class Passengers {
 	private int passport_number;// int,
 	private Date date_of_birth;// date,
 	private int seat_number;// int,
-//	foreign Key (booking_id) references Bookings(booking_id)
+
+	
+	//	foreign Key (booking_id) references Bookings(booking_id)
 	public int getPassenger_id() {
 		return passenger_id;
 	}

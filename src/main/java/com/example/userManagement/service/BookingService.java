@@ -38,8 +38,8 @@ public class BookingService {
 //			dto.setPassengerName(booking.getPassengerName());
 			dto.setFlightId(booking.getFlight().getFlightId());
 			dto.setFlightNumber(booking.getFlight().getFlightNumber());
-			dto.setDepartureAirport(booking.getFlight().getDepartureAirport());
-			dto.setArrivalAirport(booking.getFlight().getArrivalAirport());
+			dto.setDepartureAirport(booking.getFlight().getSource());
+			dto.setArrivalAirport(booking.getFlight().getDestination());
 			dto.setUserId(booking.getUser().getUserId());
 //			dto.setUsername(booking.getUser().getUsername());
 			return dto;
@@ -48,10 +48,10 @@ public class BookingService {
 		return bookingDTO;
 	}
 
-	public Bookings saveBooking(Long userId, int flightId, Bookings booking) {
+	public Bookings saveBooking(Long userId, Long long1, Bookings booking) {
 		User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
-		Flights flight = flightRepository.findById(flightId).orElseThrow(() -> new RuntimeException("Flight not found"));
+		Flights flight = flightRepository.findById(long1).orElseThrow(() -> new RuntimeException("Flight not found"));
 
 		booking.setUser(user);
 		booking.setFlight(flight);
