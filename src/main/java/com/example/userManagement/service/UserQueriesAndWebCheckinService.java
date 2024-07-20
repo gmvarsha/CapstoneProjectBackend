@@ -12,12 +12,11 @@ import org.springframework.stereotype.Service;
 import com.example.userManagement.DTO.CheckInRequest;
 import com.example.userManagement.DTO.QueryRequest;
 import com.example.userManagement.model.CheckIn;
-import com.example.userManagement.model.Flight;
 import com.example.userManagement.model.Flights;
 import com.example.userManagement.model.User;
 import com.example.userManagement.model.UserQuery;
 import com.example.userManagement.repository.CheckInRepository;
-import com.example.userManagement.repository.FlightRepository;
+import com.example.userManagement.repository.FlightsRepository;
 import com.example.userManagement.repository.UserQueryRepository;
 import com.example.userManagement.repository.UserRepository;
 
@@ -34,7 +33,7 @@ public class UserQueriesAndWebCheckinService {
     private UserRepository userRepository;
     
     @Autowired
-    private FlightRepository flightRepository;
+    private FlightsRepository flightsRepository;
 
     public String saveQuery(QueryRequest queryRequest) throws Exception {
         UserQuery query = new UserQuery();
@@ -59,7 +58,7 @@ public class UserQueriesAndWebCheckinService {
   		}
 		  
 		  // Check if the flight exists 
-  	Optional<Flights> flightOptional = flightRepository.findById(checkInRequest.getFlightId());
+  	Optional<Flights> flightOptional = flightsRepository.findById(checkInRequest.getFlightId());
   	if (!flightOptional.isPresent()) { 
   		throw new IllegalArgumentException("Flight not found."); }
 		  

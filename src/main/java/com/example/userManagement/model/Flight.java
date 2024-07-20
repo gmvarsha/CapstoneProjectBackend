@@ -1,5 +1,8 @@
 package com.example.userManagement.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -9,75 +12,96 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 @Entity
-@Table(name = "flight")
+@Table(name = "flights")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="flight_id")
     private Long flightId;
-
-    @Column(name="source")
     private String source;
-
-    @Column(name="destination")
-    private String destination;
-
-    @Column(name="flightName")
-    private String flightName;
-    
-    @Column(name="seats")
-    private Long seatAvailability;
-    
-    @Column(name="flight_scheduled_date")
-    private Date flightScheduledDate;
-
-
+    private String destination;  
+    private String flightNumber;
+    private LocalDate departureDate;
+    private LocalTime departureTime;
+    private LocalDate arrivalDate;
+    private LocalTime arrivalTime;
+    private BigDecimal price;
+    private Long seats;
+    private String flightType;
+    private String stops;
 	public Long getFlightId() {
 		return flightId;
 	}
-
 	public void setFlightId(Long flightId) {
 		this.flightId = flightId;
 	}
-
 	public String getSource() {
 		return source;
 	}
-
 	public void setSource(String source) {
 		this.source = source;
 	}
-
 	public String getDestination() {
 		return destination;
 	}
-
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-
-	public String getFlightName() {
-		return flightName;
-	}
-
-	public void setFlightName(String flightName) {
-		this.flightName = flightName;
-	}
-
-	public Long getSeatAvailability() {
-		return seatAvailability;
-	}
-
-	public void setSeatAvailability(Long seatAvailability) {
-		this.seatAvailability = seatAvailability;
-	}
-
-	public Date getFlightScheduledDate() {
-		return flightScheduledDate;
-	}
-
-	public void setFlightScheduledDate(Date flightScheduledDate) {
-		this.flightScheduledDate = flightScheduledDate;
-	} 
 	
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+	public String getStops() {
+		return stops;
+	}
+	public void setStops(String stops) {
+		this.stops = stops;
+	}
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+	public LocalDate getDepartureDate() {
+		return departureDate;
+	}
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
+	}
+	public LocalTime getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(LocalTime departureTime) {
+		this.departureTime = departureTime;
+	}
+	public LocalDate getArrivalDate() {
+		return arrivalDate;
+	}
+	public void setArrivalDate(LocalDate arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+	public LocalTime getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(LocalTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	public BigDecimal getPrice() {
+		return price;
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+	public Long getSeats() {
+		return seats;
+	}
+	public void setSeats(Long seats) {
+		this.seats = seats;
+	}
+	public String getFlightType() {
+		return flightType;
+	}
+	public void setFlightType(String flightType) {
+		this.flightType = flightType;
+	}
+    
 }
+
+
