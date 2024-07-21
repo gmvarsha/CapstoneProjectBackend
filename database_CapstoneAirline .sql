@@ -81,3 +81,21 @@ country varchar(50)
 
 );
 
+CREATE TABLE user_query (
+  `user_query_id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) DEFAULT NULL,
+  `user_id` bigint NOT NULL,
+  `user_queries` varchar(2555) NOT NULL,
+  PRIMARY KEY (`user_query_id`)
+);
+
+
+CREATE TABLE reply (
+  `reply_id` bigint NOT NULL AUTO_INCREMENT,
+  `admin_reply` varchar(2555) NOT NULL,
+  `user_id` bigint NOT NULL,
+  `user_query_id` bigint NOT NULL,
+  PRIMARY KEY (`reply_id`)
+);
+
+
