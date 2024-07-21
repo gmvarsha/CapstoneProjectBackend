@@ -1,5 +1,6 @@
 package com.example.userManagement.controller;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +35,8 @@ public class UserQueriesAndWebCheckInController {
     }
     
     @GetMapping("/getAllQueries")
-    public ResponseEntity<List<UserQuery>> getQueries() {
-        List<UserQuery> queries = userQueriesAndWebCheckinService.getAllQueries();
+    public  ResponseEntity<List<Map<String, Object>>> getQueries() {
+    	List<Map<String,Object>> queries = userQueriesAndWebCheckinService.getAllQueries();
         return ResponseEntity.ok(queries);
     }
 }
