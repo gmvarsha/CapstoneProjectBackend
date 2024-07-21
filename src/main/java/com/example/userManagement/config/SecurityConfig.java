@@ -19,7 +19,7 @@ public class SecurityConfig {
                  .csrf(csrf -> csrf.disable())
                  .authorizeHttpRequests(auth -> auth
                                  .requestMatchers(HttpMethod.POST, "/api/user/signUp", "/api/user/login", "/api/user/query", "/api/user/checkin", "/api/user/booking").permitAll()
-                                 .requestMatchers(HttpMethod.GET,"/flights/getflights","/flights/getAllflights", "/api/user/getAllQueries", "/api/user/{userId}", "/api/user/getBookingDetails/*").permitAll()
+                                 .requestMatchers(HttpMethod.GET,"/flights/getflights","/flights/getAllflights", "/api/user/getAllQueries", "/api/user/{userId}", "/api/user/queries/{userId}","/api/user/getBookingDetails/*").permitAll()
                                  .anyRequest().authenticated()
                  )
                  .formLogin(login -> login.disable()); // Disable default login form

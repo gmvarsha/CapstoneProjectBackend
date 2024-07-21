@@ -39,4 +39,9 @@ public class UserQueriesAndWebCheckInController {
     	List<Map<String,Object>> queries = userQueriesAndWebCheckinService.getAllQueries();
         return ResponseEntity.ok(queries);
     }
+    
+    @GetMapping("/queries/{userId}")
+    public List<Map<String, Object>> getQueriesByUserId(@PathVariable Long userId) {
+        return userQueriesAndWebCheckinService.getQueriesByUserId(userId);
+    }
 }

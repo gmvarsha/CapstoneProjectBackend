@@ -35,7 +35,8 @@ public class UserQueriesAndWebCheckinService {
     
     @Autowired
     private FlightsRepository flightsRepository;
-
+    private FlightRepository flightRepository;
+    
     public String saveQuery(QueryRequest queryRequest) throws Exception {
         UserQuery query = new UserQuery();
         query.setUserQueries(queryRequest.getQuery());
@@ -86,7 +87,16 @@ public class UserQueriesAndWebCheckinService {
       }
   }
 
-	public List<Map<String,Object>> getAllQueries() {
-	        return userQueryRepository.getAllQueries();
-	    }
+    public List<Map<String,Object>> getAllQueries() {
+        return userQueryRepository.getAllQueries();
+    }
+
+public List<Map<String, Object>> getQueriesByUserId(Long userId) {
+	List<Map<String, Object>> userQueries = userQueryRepository.getQueriesByUserId(userId);
+	if(!userQueries.isEmpty()) {
+		return userQueries;
+	}else {
+		return null;
+	}      
+}
 }
