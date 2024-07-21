@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class UserQueriesAndWebCheckinService {
         }catch(Exception e) {
         	throw new Exception("Save Query Failed",e);
         }
-		return "Query sent successfully!";
+		return "Query sent successfully! You Will get response within 24hrs";
     }
 
     public String performCheckIn(CheckInRequest checkInRequest) {
@@ -85,7 +86,7 @@ public class UserQueriesAndWebCheckinService {
       }
   }
 
-	public List<UserQuery> getAllQueries() {
-	        return userQueryRepository.findAll();
+	public List<Map<String,Object>> getAllQueries() {
+	        return userQueryRepository.getAllQueries();
 	    }
 }
