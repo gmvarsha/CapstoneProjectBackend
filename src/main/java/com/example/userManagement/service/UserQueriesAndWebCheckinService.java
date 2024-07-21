@@ -17,6 +17,7 @@ import com.example.userManagement.model.Flights;
 import com.example.userManagement.model.User;
 import com.example.userManagement.model.UserQuery;
 import com.example.userManagement.repository.CheckInRepository;
+import com.example.userManagement.repository.FlightRepository;
 import com.example.userManagement.repository.FlightsRepository;
 import com.example.userManagement.repository.UserQueryRepository;
 import com.example.userManagement.repository.UserRepository;
