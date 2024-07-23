@@ -25,7 +25,8 @@ public class Bookings {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int booking_id;
+    @Column(name = "booking_id")
+	private int bookingId;
 
 	private Date booking_date;// date,
 	private String status; // varchar(50),
@@ -57,16 +58,15 @@ public class Bookings {
 			passenger.setBooking(this);
 		}
 	}
-
-	public int getBooking_id() {
-		return booking_id;
-	}
-
-	public void setBooking_id(int booking_id) {
-		this.booking_id = booking_id;
-	}
-
 	
+	public int getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
+
 	public Date getBooking_date() {
 		return booking_date;
 	}
@@ -103,7 +103,7 @@ public class Bookings {
 
 	@Override
 	public String toString() {
-		return "Bookings [booking_id=" + booking_id + ", userId=" +   ", flight_id=" + ", booking_date="
+		return "Bookings [booking_id=" + bookingId + ", userId=" +   ", flight_id=" + ", booking_date="
 				+ booking_date + ", status=" + status + ", flight=" + flight + "]";
 	}
 

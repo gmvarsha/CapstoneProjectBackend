@@ -5,21 +5,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.userManagement.DTO.CheckInRequest;
-import com.example.userManagement.DTO.CheckInResponse;
 import com.example.userManagement.DTO.QueryRequest;
-import com.example.userManagement.model.UserQuery;
-import com.example.userManagement.service.UserQueriesAndWebCheckinService;
+import com.example.userManagement.service.UserQueriesService;
 
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "http://localhost:3000")
 
-public class UserQueriesAndWebCheckInController {
+public class UserQueriesController {
 
     @Autowired
-    private UserQueriesAndWebCheckinService userQueriesAndWebCheckinService;
+    private UserQueriesService userQueriesAndWebCheckinService;
 
     @PostMapping("/query")
     public ResponseEntity<String> sendQuery(@RequestBody QueryRequest queryRequest) throws Exception {
@@ -27,13 +23,6 @@ public class UserQueriesAndWebCheckInController {
         return ResponseEntity.ok(message);
     }
 
-    @PostMapping("/checkin")
-    public ResponseEntity<CheckInResponse> performCheckIn(@RequestBody CheckInRequest checkInRequest) {
-        String message = userQueriesAndWebCheckinService.performCheckIn(checkInRequest);
-        CheckInResponse response = new CheckInResponse("Checked in successfully!", message);
-        return ResponseEntity.ok(response);
-    }
-    
     @GetMapping("/getAllQueries")
     public  ResponseEntity<List<Map<String, Object>>> getQueries() {
     	List<Map<String,Object>> queries = userQueriesAndWebCheckinService.getAllQueries();

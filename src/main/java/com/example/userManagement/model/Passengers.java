@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,14 +23,16 @@ public class Passengers {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int passenger_id;// int auto_increment Primary Key,
+	@Column(name="passenger_id")
+	private int passengerId;// int auto_increment Primary Key,
 //	private int booking_id;// int ,
 	private String first_name;// varchar(50),
 	private String last_name;// varchar(50),
 	private int passport_number;// int,
 	private Date date_of_birth;// date,
 	private int seat_number;// int,
-    
+    private boolean checked_in;
+
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "booking_id")
 	@JsonBackReference
@@ -50,7 +53,7 @@ public class Passengers {
 
 	//	foreign Key (booking_id) references Bookings(booking_id)
 	public int getPassenger_id() {
-		return passenger_id;
+		return passengerId;
 	}
 	
 	
@@ -84,9 +87,25 @@ public class Passengers {
 	public void setSeat_number(int seat_number) {
 		this.seat_number = seat_number;
 	}
+
+	public boolean isChecked_in() {
+		return checked_in;
+	}
+
+
+	public void setChecked_in(boolean checked_in) {
+		this.checked_in = checked_in;
+	}
+
+
+	public void setPassenger_id(int passengerId) {
+		this.passengerId = passengerId;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Passengers [passenger_id=" + passenger_id + ", booking=" + booking + ", first_name=" + first_name
+		return "Passengers [passenger_id=" + passengerId + ", booking=" + booking + ", first_name=" + first_name
 				+ ", last_name=" + last_name + ", passport_number=" + passport_number + ", date_of_birth="
 				+ date_of_birth + ", seat_number=" + seat_number + "]";
 	}
