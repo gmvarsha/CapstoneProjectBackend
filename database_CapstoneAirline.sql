@@ -47,17 +47,18 @@ foreign Key (flight_id) references Flights(flight_id)
 );
 
 
-create table Passengers(
-
-passenger_id int auto_increment Primary Key,
-booking_id int ,
-first_name varchar(50),
-last_name varchar(50),
-passport_number int,
-date_of_birth date,
-seat_number int,
-foreign Key (booking_id) references Bookings(booking_id)
-
+CREATE TABLE `passengers` (
+  `passenger_id` int NOT NULL AUTO_INCREMENT,
+  `date_of_birth` date DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `passport_number` int NOT NULL,
+  `seat_number` int NOT NULL,
+  `booking_id` int DEFAULT NULL,
+  `checked_in` bit(1) NOT NULL,
+  PRIMARY KEY (`passenger_id`),
+  KEY `FKgc7vcfrut3vamougerwse2m2u` (`booking_id`),
+  CONSTRAINT `FKgc7vcfrut3vamougerwse2m2u` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`booking_id`)
 );
 
 
