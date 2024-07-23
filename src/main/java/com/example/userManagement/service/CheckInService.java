@@ -47,7 +47,7 @@ public class CheckInService {
 			status.setPassengers(booking.getPassengers().stream().map(p -> {
 				CheckInStatus.PassengerStatus ps = new CheckInStatus.PassengerStatus();
 				ps.setName((p.getFirst_name() + " " + p.getLast_name()));
-				ps.setCheckedIn(p.isChecked_in());
+				ps.setCheckedIn(p.isCheckedInFlag());
 				ps.setSeatNumber(p.getSeat_number());
 				return ps;
 			}).collect(Collectors.toList()));
@@ -59,7 +59,7 @@ public class CheckInService {
 
 	public boolean checkInPassengers(List<Integer> passengerIds) {
 		List<Passengers> passengers = passengerRepository.findBypassengerIdIn(passengerIds);
-		passengers.forEach(passenger -> passenger.setChecked_in(true));
+		passengers.forEach(passenger -> passenger.setCheckedInFlag(true));
 		passengerRepository.saveAll(passengers);
 
 		List<Integer> bookingIds = passengers.stream().map(passenger -> passenger.getBooking().getBookingId())
@@ -71,7 +71,7 @@ public class CheckInService {
 			List<Passengers> allPassengers = passengerRepository.findBybooking_bookingId(bookingId);
 
 			// Check if all passengers in the booking are checked in
-			boolean allCheckedIn = allPassengers.stream().allMatch(Passengers::isChecked_in);
+			boolean allCheckedIn = allPassengers.stream().allMatch(Passengers::isCheckedInFlag);
 
 			if (allCheckedIn) {
 				Bookings booking = allPassengers.get(0).getBooking();

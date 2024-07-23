@@ -31,7 +31,9 @@ public class Passengers {
 	private int passport_number;// int,
 	private Date date_of_birth;// date,
 	private int seat_number;// int,
-    private boolean checked_in;
+	
+	@Column(name="checked_in")
+    private boolean checkedInFlag;
 
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "booking_id")
@@ -88,13 +90,22 @@ public class Passengers {
 		this.seat_number = seat_number;
 	}
 
-	public boolean isChecked_in() {
-		return checked_in;
+	public int getPassengerId() {
+		return passengerId;
 	}
 
 
-	public void setChecked_in(boolean checked_in) {
-		this.checked_in = checked_in;
+	public void setPassengerId(int passengerId) {
+		this.passengerId = passengerId;
+	}
+
+	public boolean isCheckedInFlag() {
+		return checkedInFlag;
+	}
+
+
+	public void setCheckedInFlag(boolean checkedInFlag) {
+		this.checkedInFlag = checkedInFlag;
 	}
 
 
