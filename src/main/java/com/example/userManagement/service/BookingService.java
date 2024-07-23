@@ -13,14 +13,14 @@ import com.example.userManagement.model.Flights;
 import com.example.userManagement.model.Passengers;
 import com.example.userManagement.model.User;
 import com.example.userManagement.repository.BookingRepository;
-import com.example.userManagement.repository.FlightRepository;
+import com.example.userManagement.repository.FlightsRepository;
 import com.example.userManagement.repository.UserRepository;
 
 @Service(value = "bookingService")
 public class BookingService {
 
 	@Autowired
-	private FlightRepository flightRepository;
+	private FlightsRepository flightsRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -61,7 +61,7 @@ public class BookingService {
 		  System.out.println("User id "+userId);
 		User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
      
-		Flights flight = flightRepository.findById(long1).orElseThrow(() -> new RuntimeException("Flight not found"));
+		Flights flight = flightsRepository.findById(long1).orElseThrow(() -> new RuntimeException("Flight not found"));
 
 		booking.setUser(user);
 		booking.setFlight(flight);
