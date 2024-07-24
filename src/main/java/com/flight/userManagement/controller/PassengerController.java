@@ -38,11 +38,4 @@ public class PassengerController {
             return ResponseEntity.ok("Passengers checked in. Booking confirmed and seat assigned");
         }
     }
-
-	/*
-	 * @PostMapping("/sendMessage") public ResponseEntity<String>
-	 * sendMessage(@RequestBody String message, @RequestParam Long passengerId) {
-	 * passengerService.sendMessage(passengerId, message); return
-	 * ResponseEntity.ok("Message sent to passenger"); }
-	 */
 }

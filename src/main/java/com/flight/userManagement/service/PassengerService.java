@@ -47,24 +47,5 @@ public class PassengerService {
        return allCheckedIn;
 
     }
-	/*
-	 * public void sendMessage(Integer passengerId, String message) { try { // Find
-	 * the passenger by ID Passengers passenger =
-	 * passengerRepository.findById(passengerId) .orElseThrow(() -> new
-	 * IllegalArgumentException("Passenger not found with ID: " + passengerId));
-	 * 
-	 * // Prepare the message String recipientEmail = passenger.getEmail(); String
-	 * subject = "Flight Check-in Confirmation"; String body = "Dear " +
-	 * passenger.getName() + ",\n\n" + message +
-	 * "\n\nBest regards,\nFlight Booking Team";
-	 * 
-	 * // Send the email sendEmail(recipientEmail, subject, body);
-	 * 
-	 * // Log the successful message sending logger.info("Message sent to {}: {}",
-	 * passenger.getName(), message); } catch (Exception e) { // Log the exception
-	 * logger.error("Failed to send message to passenger with ID {}: {}",
-	 * passengerId, e.getMessage()); // Optionally, you could throw a custom
-	 * exception or handle it differently } }
-	 */
 }
 
