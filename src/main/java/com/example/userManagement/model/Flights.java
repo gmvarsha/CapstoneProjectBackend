@@ -38,8 +38,8 @@ public class Flights {
 	
 	
 	
-	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
-	private List<Bookings> bookings;
+//	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+//	private List<Bookings> bookings;
 
 	public Long getFlightId() {
 		return flightId;
@@ -128,7 +128,7 @@ public class Flights {
 		return "Flights [flightId=" + flightId + ", flightNumber=" + flightNumber + ", source=" + source
 				+ ", destination=" + destination + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime
 				+ ", airline=" + airline + ", status=" + status + ", flightName=" + flightName
-				+ ", flightScheduledDate=" + flightScheduledDate + ", bookings=" + bookings + "]";
+				+ ", flightScheduledDate=" + flightScheduledDate + "]";
 	}
 
 	

@@ -3,6 +3,7 @@ package com.example.userManagement.DTO;
 import java.sql.Date;
 import java.util.List;
 
+import com.example.userManagement.model.Flight;
 import com.example.userManagement.model.Flights;
 import com.example.userManagement.model.User;
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -13,7 +14,7 @@ public class BookingPostDTO {
 	
 	
 	    private User user;
-	    private Flights flight;
+	    private Flight flight;
 	    @JsonAlias("booking_date")
 	    private Date bookingDate;
 	    private String status;
@@ -38,10 +39,10 @@ public class BookingPostDTO {
 		public void setUser(User user) {
 			this.user = user;
 		}
-		public Flights getFlight() {
+		public Flight getFlight() {
 			return flight;
 		}
-		public void setFlight(Flights flight) {
+		public void setFlight(Flight flight) {
 			this.flight = flight;
 		}
 		public Date getBookingDate() {

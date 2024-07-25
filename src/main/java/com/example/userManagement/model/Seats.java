@@ -14,7 +14,7 @@ public class Seats {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int seat_id;// int auto_increment Primary Key,
-	private int flight_id;// int,
+	private Long flight_id;// int,
 	private int seat_number;// int,
 	private String seat_class;// varchar(100),
 	private boolean is_available;// Boolean,
@@ -25,10 +25,10 @@ public class Seats {
 	public void setSeat_id(int seat_id) {
 		this.seat_id = seat_id;
 	}
-	public int getFlight_id() {
+	public Long getFlight_id() {
 		return flight_id;
 	}
-	public void setFlight_id(int flight_id) {
+	public void setFlight_id(Long flight_id) {
 		this.flight_id = flight_id;
 	}
 	public int getSeat_number() {

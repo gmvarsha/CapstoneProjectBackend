@@ -18,14 +18,11 @@ import jakarta.persistence.Table;
 @Table(name = "PASSENGERS")
 public class Passengers {
 	
-	
-
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="passenger_id")
 	private int passengerId;// int auto_increment Primary Key,
-//	private int booking_id;// int ,
 	private String first_name;// varchar(50),
 	private String last_name;// varchar(50),
 	private int passport_number;// int,

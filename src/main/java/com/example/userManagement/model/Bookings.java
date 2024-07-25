@@ -16,7 +16,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,7 +33,7 @@ public class Bookings {
 
 	@ManyToOne
 	@JoinColumn(name = "flight_id", nullable = false)
-	private Flights flight;
+	private Flight flight;
 
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
@@ -83,13 +82,12 @@ public class Bookings {
 		this.status = status;
 	}
 	
-	
 
-	public Flights getFlight() {
+	public Flight getFlight() {
 		return flight;
 	}
 
-	public void setFlight(Flights flight) {
+	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
 

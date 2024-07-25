@@ -4,30 +4,58 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "flights")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="flight_id")
     private Long flightId;
     private String source;
     private String destination;  
+    @Column(name ="flight_number")
     private String flightNumber;
+    @Column(name ="departure_date")
     private LocalDate departureDate;
+    @Column(name ="departure_time")
     private LocalTime departureTime;
+    @Column(name ="arrival_date")
     private LocalDate arrivalDate;
+    @Column(name ="arrival_time")
     private LocalTime arrivalTime;
     private BigDecimal price;
     private Long seats;
+    @Column(name ="flight_type")
     private String flightType;
     private String stops;
+    
+//    
+//    flight_id INT PRIMARY KEY AUTO_INCREMENT,
+//    source VARCHAR(255) NOT NULL,
+//    destination VARCHAR(255) NOT NULL,
+//flight_number VARCHAR(50) NOT NULL,
+//departure_date DATE NOT NULL,
+//departure_time TIME NOT NULL,
+//arrival_date DATE NOT NULL,
+//arrival_time TIME NOT NULL,
+//stops varchar(255),
+//seats int,
+//flight_type varchar(50),
+//price DECIMAL(10, 2) NOT NULL
+    
+
+	@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+	private List<Bookings> bookings;
 	public Long getFlightId() {
 		return flightId;
 	}

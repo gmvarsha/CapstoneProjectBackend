@@ -57,7 +57,7 @@ public class UserController {
 
 	}
 
-	@PostMapping("/signUp")
+	@PostMapping(value="/signUp", consumes = "application/json")
 	public ResponseEntity<?> signup(@RequestBody User user) {
 		if (userService.findByEmail(user.getEmail()) != null) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use");
@@ -70,13 +70,8 @@ public class UserController {
 
 	@PostMapping("/booking")
 	public ResponseEntity<String> bookTicket(@RequestBody BookingPostDTO request) {
-
-		System.out.println("Inside Booking controller" + request.toString());
-
 		try {
-            
-			
-			System.out.println(new ObjectMapper().writeValueAsString(request));
+			System.out.println("line number 78 =>"+new ObjectMapper().writeValueAsString(request));
 			Bookings booking = new Bookings();
 			
 			booking.setUser(request.getUser());
@@ -84,13 +79,6 @@ public class UserController {
 			booking.setBooking_date(request.getBookingDate());
 			booking.setStatus(request.getStatus());
 			booking.setPassengers(request.getPassengerDetails());
-			
-			
-//			System.out.println(new ObjectMapper().writeValueAsString(booking));
-			
-//			List<Passengers> newPassengers = new ArrayList<>();
-//			
-//			for ()
 
 			bookingService.saveBooking(booking.getUser().getUserId(), booking.getFlight().getFlightId(), booking);
 			
@@ -99,30 +87,14 @@ public class UserController {
 					.body("Booking is successfull will confirm you in few moments on seat allocation");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error"+e.getMessage());
 		}
 
 	}
 
-//	@GetMapping("/getBookingDetails/{user_id}")
-	public ResponseEntity<Optional<List<Bookings>>> getBookingDetails(@PathVariable Long user_id) {
 
-		System.out.println("Inside getBookingDetails controller");
 
-		try {
-
-//			Optional<List<Bookings>> bookings = userService.getBookingsById(user_id);
-//			System.out.println("Bookings->"+bookings.toString());
-//			return ResponseEntity.ok(bookings);
-			return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return (ResponseEntity<Optional<List<Bookings>>>) ResponseEntity.notFound();
-		}
-
-	}
-
-	@GetMapping("/getBookingDetails/{userId}")
+	@GetMapping(value="/getBookingDetails/{userId}" ,consumes = "application/json")
 	public ResponseEntity<List<Bookings>> getBookingsByUserId(@PathVariable Long userId) {
 
 		System.out.println("Inside booking controller");
