@@ -46,6 +46,8 @@ public class UserController {
 					public Long userId = user.getUserId();
 					public String email = user.getEmail();
 					public String role = user.getRole();
+					public String firstName = user.getFirstName();
+					public String lastName = user.getLastName();
 				});
 			} else {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No Credentials found ");
